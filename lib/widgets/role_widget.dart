@@ -7,7 +7,11 @@ import 'main_button.dart';
 class RoleWidget extends StatefulWidget {
   final String role;
 
-  const RoleWidget({Key? key, required this.role}) : super(key: key);
+  const RoleWidget(
+      {Key? key,
+      required this.role,
+      required Function(String p1) onRoleSelected})
+      : super(key: key);
 
   @override
   RoleWidgetState createState() => RoleWidgetState();
@@ -53,7 +57,7 @@ class RoleWidgetState extends State<RoleWidget> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
-            key: _formKey, // Add the key to the Form widget
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -67,6 +71,16 @@ class RoleWidgetState extends State<RoleWidget> {
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: AppColors.accentClr,
+                      ),
+                    ),
+                    focusedErrorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.accentClr,
+                      ),
+                    ),
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.red, // Change to desired error color
                       ),
                     ),
                   ),
@@ -90,6 +104,16 @@ class RoleWidgetState extends State<RoleWidget> {
                         color: AppColors.accentClr,
                       ),
                     ),
+                    focusedErrorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.accentClr,
+                      ),
+                    ),
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.red, // Change to desired error color
+                      ),
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -111,6 +135,16 @@ class RoleWidgetState extends State<RoleWidget> {
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: AppColors.accentClr,
+                      ),
+                    ),
+                    focusedErrorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.accentClr,
+                      ),
+                    ),
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.red, // Change to desired error color
                       ),
                     ),
                   ),
@@ -155,6 +189,16 @@ class RoleWidgetState extends State<RoleWidget> {
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: AppColors.accentClr,
+                        ),
+                      ),
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppColors.accentClr,
+                        ),
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.red, // Change to desired error color
                         ),
                       ),
                     ),
