@@ -16,14 +16,12 @@ class SelectedRoleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (selectedRole == 'Client') {
-      return RoleWidget(
+      return const RoleWidget(
         role: 'Client',
-        onRoleSelected: onRoleSelected,
       );
     } else if (selectedRole == 'Admin') {
-      return RoleWidget(
+      return const RoleWidget(
         role: 'Admin',
-        onRoleSelected: onRoleSelected,
       );
     } else {
       return const SizedBox(

@@ -2,16 +2,16 @@ import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
+import '../views/client/client_home_screen.dart';
 import 'main_button.dart';
 
 class RoleWidget extends StatefulWidget {
   final String role;
 
-  const RoleWidget(
-      {Key? key,
-      required this.role,
-      required Function(String p1) onRoleSelected})
-      : super(key: key);
+  const RoleWidget({
+    Key? key,
+    required this.role,
+  }) : super(key: key);
 
   @override
   RoleWidgetState createState() => RoleWidgetState();
@@ -221,9 +221,23 @@ class RoleWidgetState extends State<RoleWidget> {
           SizedBox(
             width: 250,
             child: SecondButton(
-              text: 'Sign in',
+              text: 'Sign up as ${widget.role}',
               onPressed: () {
-                if (_formKey.currentState?.validate() ?? false) {}
+                if (_formKey.currentState?.validate() ?? false) {
+                  if (widget.role == "Admin") {
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const AdminMapsScreen()),
+                    // );
+                  } else if (widget.role == "Client") {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ClientHomeScreen()),
+                    );
+                  }
+                }
               },
             ),
           ),
