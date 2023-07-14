@@ -1,0 +1,18 @@
+- lib
+    - models
+        - user.dart
+        - appointment.dart
+    - views
+        - appointment_screen.dart
+        - admin_screen.dart
+    - viewmodels
+        - appointment_viewmodel.dart
+        - admin_viewmodel.dart
+    - controllers
+        - appointment_controller.dart
+        - admin_controller.dart
+    - services
+        - database_service.dart
+    - repositories
+        - appointment_repository.dart
+    - main.dart
