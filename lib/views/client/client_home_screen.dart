@@ -14,6 +14,7 @@ class ClientHomeScreen extends StatefulWidget {
 class _ClientHomeScreenState extends State<ClientHomeScreen> {
   PageController pageController = PageController();
   int _currentIndex = 0;
+  bool _isSearching = false;
 
   @override
   void dispose() {
@@ -38,109 +39,106 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
     });
   }
 
+  PreferredSizeWidget _buildAppBar() {
+    return AppBar(
+      leading: _isSearching
+          ? IconButton(
+              onPressed: () {
+                setState(() {
+                  _isSearching = false;
+                });
+              },
+              icon: const Icon(Icons.cancel),
+              color: AppColors.accentClr,
+            )
+          : IconButton(
+              onPressed: () {
+                setState(() {
+                  _isSearching = true;
+                });
+              },
+              icon: const Icon(Icons.search),
+              color: AppColors.accentClr,
+            ),
+      title: _isSearching
+          ? TextField(
+              decoration: const InputDecoration(
+                hintText: 'Search...',
+                border: InputBorder.none,
+              ),
+              onSubmitted: (value) {
+                // Perform search based on the input value
+                // You can add your search logic here
+              },
+            )
+          : const Text(
+              'Apointify',
+              style: TextStyle(color: AppColors.accentClr),
+            ),
+      centerTitle: true,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      backgroundColor: AppColors.whiteClr,
+      actions: _isSearching
+          ? [
+              IconButton(
+                onPressed: () {
+                  // Perform search validation
+                },
+                icon: const Icon(Icons.check),
+                color: AppColors.accentClr,
+              ),
+              IconButton(
+                onPressed: () {
+                  // Perform filtering
+                },
+                icon: const Icon(Icons.filter_list),
+                color: AppColors.accentClr,
+              ),
+            ]
+          : [
+              Builder(
+                builder: (context) => GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: Image.asset(
+                    "./assets/images/appointify.png",
+                    width: 100,
+                  ),
+                ),
+              ),
+            ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Apointify',
-          style: TextStyle(color: AppColors.accentClr),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: AppColors.whiteClr,
-        iconTheme: const IconThemeData(
-          color: AppColors.accentClr,
-        ),
-        actions: [
-          Builder(
-            builder: (context) => GestureDetector(
-              onTap: () {
-                Scaffold.of(context).openDrawer();
-              },
-              child: Image.asset(
-                "./assets/images/appointify.png",
-                width: 100,
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: _buildAppBar(),
       endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: AppColors.accentClr,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/images/profile.png'),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    'John Doe',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                // Handle settings tap
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.notifications),
-              title: const Text('Notifications'),
-              onTap: () {
-                // Handle notifications tap
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.language),
-              title: const Text('Change Language'),
-              onTap: () {
-                // Handle language selection tap
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.dark_mode),
-              title: const Text('Dark Mode'),
-              onTap: () {
-                // Handle dark mode toggle tap
-              },
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              alignment: Alignment.bottomCenter,
-              child: const Text(
-                'App Version: 1.0.0',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
+          // Drawer content
+          ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height -
+                    AppBar().preferredSize.height -
+                    MediaQuery.of(context).padding.top,
+                child: PageView(
+                  controller: pageController,
+                  onPageChanged: _onPageChanged,
+                  children: const [
+                    AppointmentsScreen(),
+                    // CategorieAppointmentScreen(),
+                    // MakingAppointmentScreen(),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: _onPageChanged,
-        children: const [
-          AppointmentsScreen(),
-          SearchAppointmentScreen(),
-          MakingAppointmentScreen(),
+          ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -207,210 +205,3 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:appointify/utils/colors.dart';
-// import 'package:flutter/material.dart';
-// import '../../widgets/appointment_card.dart';
-
-// class ClientHomeScreen extends StatefulWidget {
-//   const ClientHomeScreen({super.key});
-
-//   @override
-//   State<ClientHomeScreen> createState() => _ClientHomeScreenState();
-// }
-
-// class _ClientHomeScreenState extends State<ClientHomeScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text(
-//           'Apointify',
-//           style: TextStyle(color: AppColors.accentClr),
-//         ),
-//         centerTitle: true,
-//         elevation: 0,
-//         backgroundColor: AppColors.whiteClr,
-//         iconTheme: const IconThemeData(
-//           color: AppColors.accentClr,
-//         ),
-//         actions: [
-//           Builder(
-//             builder: (context) => GestureDetector(
-//               onTap: () {
-//                 Scaffold.of(context).openDrawer();
-//               },
-//               child: Image.asset(
-//                 "./assets/images/appointify.png",
-//                 width: 100,
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//       endDrawer: Drawer(
-//         child: ListView(
-//           padding: EdgeInsets.zero,
-//           children: [
-//             const DrawerHeader(
-//               decoration: BoxDecoration(
-//                 color: AppColors.accentClr,
-//               ),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   CircleAvatar(
-//                     radius: 50,
-//                     backgroundImage: AssetImage('assets/images/profile.png'),
-//                   ),
-//                   SizedBox(height: 16),
-//                   Text(
-//                     'John Doe',
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                       fontSize: 18,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             ListTile(
-//               leading: const Icon(Icons.settings),
-//               title: const Text('Settings'),
-//               onTap: () {
-//                 // Handle settings tap
-//               },
-//             ),
-//             ListTile(
-//               leading: const Icon(Icons.notifications),
-//               title: const Text('Notifications'),
-//               onTap: () {
-//                 // Handle notifications tap
-//               },
-//             ),
-//             ListTile(
-//               leading: const Icon(Icons.language),
-//               title: const Text('Change Language'),
-//               onTap: () {
-//                 // Handle language selection tap
-//               },
-//             ),
-//             ListTile(
-//               leading: const Icon(Icons.dark_mode),
-//               title: const Text('Dark Mode'),
-//               onTap: () {
-//                 // Handle dark mode toggle tap
-//               },
-//             ),
-//             Container(
-//               padding: const EdgeInsets.symmetric(horizontal: 16),
-//               alignment: Alignment.bottomCenter,
-//               child: const Text(
-//                 'App Version: 1.0.0',
-//                 style: TextStyle(
-//                   fontSize: 14,
-//                   color: Colors.grey,
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(16.0),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       const Text(
-      //         'Upcoming Appointments',
-      //         style: TextStyle(
-      //           fontSize: 18,
-      //           fontWeight: FontWeight.bold,
-      //         ),
-      //       ),
-      //       const SizedBox(height: 16),
-      //       const AppointmentCard(
-      //         title: 'Dentist Appointment',
-      //         date: 'July 15, 2023',
-      //         time: '10:00 AM',
-      //         location: 'Dental Clinic',
-      //       ),
-      //       const SizedBox(height: 16),
-      //       const AppointmentCard(
-      //         title: 'Massage Therapy',
-      //         date: 'July 20, 2023',
-      //         time: '2:30 PM',
-      //         location: 'Spa Center',
-      //       ),
-      //       const SizedBox(height: 16),
-      //       const Text(
-      //         'Past Appointments',
-      //         style: TextStyle(
-      //           fontSize: 18,
-      //           fontWeight: FontWeight.bold,
-      //         ),
-      //       ),
-      //       const SizedBox(height: 16),
-      //       Expanded(
-      //         child: ListView.builder(
-      //           itemCount: 10,
-      //           itemBuilder: (context, index) {
-      //             return AppointmentCard(
-      //               title: 'Appointment ${index + 1}',
-      //               date: 'July ${index + 1}, 2023',
-      //               time: '9:00 AM',
-      //               location: 'Location ${index + 1}',
-      //             );
-      //           },
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-//       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-//       floatingActionButton: Padding(
-//         padding: const EdgeInsets.symmetric(vertical: 16.0),
-//         child: FloatingActionButton(
-//           onPressed: () {},
-//           backgroundColor: AppColors.accentClr,
-//           child: const Icon(Icons.add),
-//         ),
-//       ),
-//       bottomNavigationBar: BottomAppBar(
-//         shape: const CircularNotchedRectangle(),
-//         child: Padding(
-//           padding: const EdgeInsets.symmetric(horizontal: 46.0),
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: [
-//               IconButton(
-//                 onPressed: () {
-//                   // Handle navigation to the desired screen
-//                 },
-//                 icon: const Icon(Icons.calendar_month_sharp),
-//               ),
-//               IconButton(
-//                 onPressed: () {
-//                   // Handle navigation to the desired screen
-//                 },
-//                 icon: const Icon(Icons.search),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
