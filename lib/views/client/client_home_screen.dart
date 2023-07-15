@@ -1,6 +1,7 @@
 import 'package:appointify/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'client_appointment_screen.dart';
+import 'client_categories_appointment_screen.dart';
 import 'client_making_appointment_screen.dart';
 import 'client_search_appointment_screen.dart';
 
@@ -15,6 +16,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
   PageController pageController = PageController();
   int _currentIndex = 0;
   bool _isSearching = false;
+  String _selectedFilter = '';
 
   @override
   void dispose() {
@@ -40,6 +42,18 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
+    IconData filterIcon = Icons.filter_list; // Default filter icon
+
+    // Update the filter icon based on the selected filter
+    if (_selectedFilter == 'country') {
+      filterIcon = Icons.location_on;
+    } else if (_selectedFilter == 'city') {
+      filterIcon = Icons.location_city;
+    } else if (_selectedFilter == 'category') {
+      filterIcon = Icons.category;
+    } else if (_selectedFilter == 'stars') {
+      filterIcon = Icons.star;
+    }
     return AppBar(
       leading: _isSearching
           ? IconButton(
@@ -83,16 +97,32 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
           ? [
               IconButton(
                 onPressed: () {
-                  // Perform search validation
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchAppointmentScreen(),
+                    ),
+                  );
                 },
-                icon: const Icon(Icons.check),
+                icon: const Icon(Icons.search),
                 color: AppColors.accentClr,
               ),
-              IconButton(
-                onPressed: () {
-                  // Perform filtering
+              PopupMenuButton<String>(
+                onSelected: _onFilterSelected,
+                itemBuilder: (BuildContext context) {
+                  return [
+                    _buildFilterMenuItem(
+                        'country', Icons.location_on, 'Country'),
+                    _buildFilterMenuItem('city', Icons.location_city, 'City'),
+                    _buildFilterMenuItem(
+                        'category', Icons.category, 'Category'),
+                    _buildFilterMenuItem('stars', Icons.star, 'Stars'),
+                  ];
                 },
-                icon: const Icon(Icons.filter_list),
+                icon: Icon(
+                  filterIcon,
+                  color: AppColors.accentClr,
+                ),
                 color: AppColors.accentClr,
               ),
             ]
@@ -112,18 +142,103 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
     );
   }
 
+  void _onFilterSelected(String filter) {
+    setState(() {
+      _selectedFilter = filter;
+    });
+  }
+
+  PopupMenuItem<String> _buildFilterMenuItem(
+      String value, IconData icon, String text) {
+    return PopupMenuItem<String>(
+      value: value,
+      child: Row(
+        children: [
+          Icon(icon),
+          const SizedBox(width: 8),
+          Text(text),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
       endDrawer: Drawer(
-          // Drawer content
-          ),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: AppColors.accentClr,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/images/client.png'),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'John Doe',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // Handle settings tap
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.notifications),
+              title: const Text('Notifications'),
+              onTap: () {
+                // Handle notifications tap
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.language),
+              title: const Text('Change Language'),
+              onTap: () {
+                // Handle language selection tap
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.dark_mode),
+              title: const Text('Dark Mode'),
+              onTap: () {
+                // Handle dark mode toggle tap
+              },
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              alignment: Alignment.bottomCenter,
+              child: const Text(
+                'App Version: 1.0.0',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height -
                     AppBar().preferredSize.height -
                     MediaQuery.of(context).padding.top,
@@ -132,7 +247,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                   onPageChanged: _onPageChanged,
                   children: const [
                     AppointmentsScreen(),
-                    // CategorieAppointmentScreen(),
+                    CategoriesAppointmentScreen(),
                     // MakingAppointmentScreen(),
                   ],
                 ),
@@ -188,7 +303,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
               IconButton(
                 onPressed: () => _onTabTapped(1),
                 icon: Icon(
-                  Icons.search,
+                  Icons.category,
                   color: _currentIndex == 1 ? AppColors.accentClr : Colors.grey,
                 ),
               ),
@@ -199,9 +314,3 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
     );
   }
 }
-
-
-
-
-
-

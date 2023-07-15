@@ -5,16 +5,13 @@ class SearchAppointmentScreen extends StatefulWidget {
   const SearchAppointmentScreen({Key? key}) : super(key: key);
 
   @override
-  _SearchAppointmentScreenState createState() =>
+  State<SearchAppointmentScreen> createState() =>
       _SearchAppointmentScreenState();
 }
 
 class _SearchAppointmentScreenState extends State<SearchAppointmentScreen> {
-  String searchQuery = '';
-  String selectedCountry = '';
-  String selectedCity = '';
-  String selectedType = '';
-
+  String workday = "Monday-Friday";
+  String workTime = "08:00-18:00";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,117 +19,65 @@ class _SearchAppointmentScreenState extends State<SearchAppointmentScreen> {
         title: const Text('Search Appointments'),
         backgroundColor: AppColors.accentClr,
         centerTitle: true,
+        elevation: 0,
       ),
-      body: Column(
+      body: GridView.count(
+        crossAxisCount: 2, // Number of columns in the grid
+        mainAxisSpacing: 6, // Spacing between rows
+        crossAxisSpacing: 6, // Spacing between columns
+        padding: const EdgeInsets.all(10), // Padding around the grid
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: const InputDecoration(
-                labelText: 'Search',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  searchQuery = value;
-                });
-              },
-            ),
+          _buildPlaceCard(
+            'Clinic Dental',
+            'assets/images/dental.png',
           ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    value: selectedCountry,
-                    decoration: const InputDecoration(
-                      labelText: 'Country',
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedCountry = value!;
-                      });
-                    },
-                    items: [
-                      const DropdownMenuItem(
-                        value: '',
-                        child: Text('All Countries'),
-                      ),
-                      const DropdownMenuItem(
-                        value: 'Country 1',
-                        child: Text('Country 1'),
-                      ),
-                      const DropdownMenuItem(
-                        value: 'Country 2',
-                        child: Text('Country 2'),
-                      ),
-                      // Add more countries as needed
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    value: selectedCity,
-                    decoration: const InputDecoration(
-                      labelText: 'City',
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedCity = value!;
-                      });
-                    },
-                    items: [
-                      const DropdownMenuItem(
-                        value: '',
-                        child: Text('All Cities'),
-                      ),
-                      const DropdownMenuItem(
-                        value: 'City 1',
-                        child: Text('City 1'),
-                      ),
-                      const DropdownMenuItem(
-                        value: 'City 2',
-                        child: Text('City 2'),
-                      ),
-                      // Add more cities as needed
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          _buildPlaceCard(
+            'Beauty Salon',
+            'assets/images/beauty_salon.png',
           ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10, // Replace with the actual count of search results
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    // Navigate to appointment details screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AppointmentDetailsScreen(),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    child: ListTile(
-                      title: Text('Appointment Name $index'),
-                      subtitle: Text('Appointment Date and Time'),
-                    ),
-                  ),
-                );
-              },
-            ),
+          _buildPlaceCard(
+            'Fitness Center',
+            'assets/images/fitness_center.png',
           ),
+          _buildPlaceCard(
+            'Spa & Wellness',
+            'assets/images/spa.png',
+          ),
+          // Add more place cards as needed
         ],
+      ),
+    );
+  }
+
+  Widget _buildPlaceCard(String name, String imagePath) {
+    return GestureDetector(
+      onTap: () {
+        // Perform action when a place card is tapped
+      },
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              imagePath,
+              width: 64,
+              height: 64,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
