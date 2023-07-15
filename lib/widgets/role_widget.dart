@@ -198,7 +198,7 @@ class RoleWidgetState extends State<RoleWidget> {
                       ),
                       errorBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.red, // Change to desired error color
+                          color: Colors.red,
                         ),
                       ),
                     ),
@@ -214,33 +214,33 @@ class RoleWidgetState extends State<RoleWidget> {
           ),
         ),
         const SizedBox(height: 16),
-        if (fullNameController.text.isNotEmpty &&
-            emailAddressController.text.isNotEmpty &&
-            passwordController.text.isNotEmpty &&
-            phoneController.text.isNotEmpty)
-          SizedBox(
-            width: 250,
-            child: SecondButton(
-              text: 'Sign up as ${widget.role}',
-              onPressed: () {
-                if (_formKey.currentState?.validate() ?? false) {
-                  if (widget.role == "Admin") {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => const AdminMapsScreen()),
-                    // );
-                  } else if (widget.role == "Client") {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ClientHomeScreen()),
-                    );
-                  }
-                }
-              },
-            ),
+        // if (fullNameController.text.isNotEmpty &&
+        //     emailAddressController.text.isNotEmpty &&
+        //     passwordController.text.isNotEmpty &&
+        //     phoneController.text.isNotEmpty)
+        SizedBox(
+          width: 250,
+          child: SecondButton(
+            text: 'Sign up as ${widget.role}',
+            onPressed: () {
+              // if (_formKey.currentState?.validate() ?? false) {
+              if (widget.role == "Admin") {
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => const AdminMapsScreen()),
+                // );
+              } else if (widget.role == "Client") {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ClientHomeScreen()),
+                );
+              }
+              // }
+            },
           ),
+        ),
       ],
     );
   }

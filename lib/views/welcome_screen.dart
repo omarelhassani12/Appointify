@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import '../widgets/click_able_text.dart';
 import 'auth/login_screen.dart';
+import 'auth/role.dart';
 
 // class SemiCircleClipper extends CustomClipper<Path> {
 //   @override
@@ -87,7 +88,13 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   ClickableTextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RoleSelection()),
+                      );
+                    },
                     nonClickableText: 'Don\'t have an account ',
                     clickableText: 'Sign Up',
                   ),

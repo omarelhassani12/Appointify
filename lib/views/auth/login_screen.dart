@@ -120,15 +120,17 @@ class __FormContentState extends State<_FormContent> {
                 },
               ),
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 80),
             SizedBox(
               width: double.infinity,
               child: BottomText(
                 text: 'Don\'t have an account? ',
                 actionText: 'Sign Up',
                 onActionPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const RoleSelection()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RoleSelection()));
                 },
               ),
             ),
