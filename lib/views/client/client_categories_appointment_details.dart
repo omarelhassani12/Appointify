@@ -1,6 +1,8 @@
 import 'package:appointify/utils/colors.dart';
 import 'package:flutter/material.dart';
 
+import 'client_place_appointment_details.dart';
+
 class ClientCategoriesAppointmentDetails extends StatelessWidget {
   final String categoryName;
   final String categoryDescription;
@@ -93,7 +95,19 @@ class ItemsCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PlaceDetailsPage(
+                  name: name,
+                  logoPath: logoPath,
+                  workDays: workDays,
+                  workTimes: workTimes,
+                ),
+              ),
+            );
+          },
           borderRadius: BorderRadius.circular(8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -151,4 +165,3 @@ class ItemsCard extends StatelessWidget {
     );
   }
 }
-
