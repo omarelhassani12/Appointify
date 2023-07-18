@@ -226,13 +226,13 @@ class RoleWidgetState extends State<RoleWidget> {
             onPressed: () {
               // if (_formKey.currentState?.validate() ?? false) {
               if (widget.role == "Admin") {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const PositionSelectMap()),
                 );
               } else if (widget.role == "Client") {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const ClientHomeScreen()),
