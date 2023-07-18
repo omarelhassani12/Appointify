@@ -94,7 +94,7 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
               height: 40.0,
               point: selectedPosition!,
               builder: (ctx) =>
-                  const Icon(Icons.location_on, color: Colors.blue),
+                  const Icon(Icons.location_on, color: AppColors.accentClr),
             ),
           ]
         : [];
