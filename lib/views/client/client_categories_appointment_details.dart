@@ -51,7 +51,7 @@ class ClientCategoriesAppointmentDetails extends StatelessWidget {
                 crossAxisCount: 3,
                 mainAxisSpacing: 0,
                 crossAxisSpacing: 0,
-                childAspectRatio: 0.8,
+                childAspectRatio: 0.7,
               ),
               itemCount: places.length,
               itemBuilder: (context, index) {

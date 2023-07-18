@@ -2,6 +2,7 @@ import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
+import '../views/auth/select_position.dart';
 import '../views/client/client_home_screen.dart';
 import 'main_button.dart';
 
@@ -225,11 +226,11 @@ class RoleWidgetState extends State<RoleWidget> {
             onPressed: () {
               // if (_formKey.currentState?.validate() ?? false) {
               if (widget.role == "Admin") {
-                // Navigator.pushReplacement(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) => const AdminMapsScreen()),
-                // );
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PositionSelectMap()),
+                );
               } else if (widget.role == "Client") {
                 Navigator.pushReplacement(
                   context,

@@ -29,19 +29,19 @@ class _SearchAppointmentScreenState extends State<SearchAppointmentScreen> {
         children: [
           _buildPlaceCard(
             'Clinic Dental',
-            'assets/images/dental.png',
+            'assets/images/appointify.png',
           ),
           _buildPlaceCard(
             'Beauty Salon',
-            'assets/images/beauty_salon.png',
+            'assets/images/appointify.png',
           ),
           _buildPlaceCard(
             'Fitness Center',
-            'assets/images/fitness_center.png',
+            'assets/images/appointify.png',
           ),
           _buildPlaceCard(
             'Spa & Wellness',
-            'assets/images/spa.png',
+            'assets/images/appointify.png',
           ),
           // Add more place cards as needed
         ],
