@@ -43,6 +43,8 @@ dependencies:
   url_launcher: ^6.1.12
   flutter_map_marker_cluster: ^1.1.1
   latlong2: 0.8.2
+  geolocator: ^7.1.0
+  geocoding: ^2.1.0
 
 
 
