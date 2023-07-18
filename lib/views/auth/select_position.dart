@@ -1,4 +1,3 @@
-import 'package:appointify/views/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
@@ -127,6 +126,7 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
         ElevatedButton(
           onPressed: () {
             // Do something with the selected position, like make an appointment
+            // ignore: avoid_print
             print(
               'Selected Position: ${selectedPosition!.latitude}, ${selectedPosition!.longitude}',
             );
@@ -135,7 +135,7 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
               context,
               MaterialPageRoute(builder: (context) {
                 // Replace the following line with the widget you want to navigate to.
-                return PlaceSelectedInfo();
+                return const PlaceSelectedInfo();
               }),
             );
           },
@@ -171,6 +171,7 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
         builder: (context) => _buildConfirmationDialog(context, locationName),
       );
     } catch (e) {
+      // ignore: avoid_print
       print('Error occurred while reverse geocoding: $e');
     }
   }

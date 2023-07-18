@@ -1,14 +1,18 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../models/establishment.dart';
 
 class PlaceSelectedInfo extends StatefulWidget {
+  const PlaceSelectedInfo({super.key});
+
   @override
-  _PlaceSelectedInfoState createState() => _PlaceSelectedInfoState();
+  PlaceSelectedInfoState createState() => PlaceSelectedInfoState();
 }
 
-class _PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
+class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
   final _formKey = GlobalKey<FormState>();
   final _establishment = Establishment(
     id: '', // You can generate a unique ID for the establishment using a package like uuid
@@ -18,8 +22,8 @@ class _PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
     phoneNumber: 0,
     categories: [], // Initialize as an empty list
     workingDays: [], // Initialize as an empty list
-    openTime: TimeOfDay(hour: 9, minute: 0), // Default opening time
-    closeTime: TimeOfDay(hour: 17, minute: 0), // Default closing time
+    openTime: const TimeOfDay(hour: 9, minute: 0), // Default opening time
+    closeTime: const TimeOfDay(hour: 17, minute: 0), // Default closing time
   );
 
   void _saveForm() {
