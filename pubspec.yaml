@@ -45,6 +45,7 @@ dependencies:
   latlong2: 0.8.2
   geolocator: ^7.1.0
   geocoding: ^2.1.0
+  flutter_compass: ^0.7.0
 
 
 

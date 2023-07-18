@@ -1,21 +1,25 @@
+import 'package:flutter/material.dart';
+
 class Establishment {
-  final String id;
-  final String name;
-  final String address;
-  final String contactInformation;
-  final EstablishmentType type;
+  String id;
+  String name;
+  String address;
+  String email;
+  int phoneNumber;
+  List<String> categories;
+  List<String> workingDays;
+  TimeOfDay openTime;
+  TimeOfDay closeTime;
 
   Establishment({
     required this.id,
     required this.name,
     required this.address,
-    required this.contactInformation,
-    required this.type,
+    required this.email,
+    required this.phoneNumber,
+    required this.categories,
+    required this.workingDays,
+    required this.openTime,
+    required this.closeTime,
   });
-}
-
-enum EstablishmentType {
-  salon,
-  cabinet,
-  restaurant,
 }
