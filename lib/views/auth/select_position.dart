@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
@@ -5,7 +7,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
-import '../../models/latlangPosition.dart';
+import '../../models/latlangposition.dart';
 import '../../utils/colors.dart';
 import 'place_selected_info.dart';
 
@@ -120,9 +122,14 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            Navigator.pop(context); // Close the alert
+            Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(
+              color: AppColors.accentClr,
+            ),
+          ),
         ),
         ElevatedButton(
           onPressed: () {
@@ -146,6 +153,10 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
               );
             }
           },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: AppColors.whiteClr,
+            backgroundColor: AppColors.accentClr,
+          ),
           child: const Text('Confirm'),
         ),
       ],
@@ -178,7 +189,6 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
         builder: (context) => _buildConfirmationDialog(context, locationName),
       );
     } catch (e) {
-      // ignore: avoid_print
       print('Error occurred while reverse geocoding: $e');
     }
   }

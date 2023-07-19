@@ -1,13 +1,13 @@
 class Appointment {
-  final String id;
-  final DateTime dateTime;
-  final String userId;
-  final String details;
+  final String name;
+  final String time;
+  final String day;
+  final String phone;
 
   Appointment({
-    required this.id,
-    required this.dateTime,
-    required this.userId,
-    required this.details,
+    required this.name,
+    required this.time,
+    required this.day,
+    required this.phone,
   });
 }

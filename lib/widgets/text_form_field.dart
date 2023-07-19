@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/colors.dart';
+
 class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String labelText;
@@ -161,6 +163,42 @@ class CustomPasswordFieldState extends State<CustomPasswordField> {
           },
         ),
       ),
+    );
+  }
+}
+
+class InfoTextFormField extends StatelessWidget {
+  final TextEditingController controller;
+  final void Function(String?)? onSaved;
+  final String? initialValue;
+  final String? Function(String?) validator;
+
+  const InfoTextFormField({
+    super.key,
+    required this.controller,
+    this.onSaved,
+    this.initialValue,
+    required this.validator,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      initialValue: initialValue,
+      decoration: const InputDecoration(
+        labelText: 'Name',
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.accentClr),
+        ),
+        labelStyle: TextStyle(
+          color: AppColors.accentClr,
+        ),
+        focusColor: AppColors.accentClr,
+      ),
+      cursorColor: AppColors.accentClr,
+      onSaved: onSaved,
+      validator: validator,
     );
   }
 }
