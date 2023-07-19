@@ -43,6 +43,14 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
     );
   }
 
+  final TextEditingController _workingDaysController = TextEditingController();
+
+  @override
+  void dispose() {
+    _workingDaysController.dispose();
+    super.dispose();
+  }
+
   void _saveForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -100,18 +108,20 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
     // Add more categories as needed
   ];
 
-  void _showWeekdaysDialog() async {
-    final List<String> weekdays = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday'
-    ];
+  final List<String> weekdays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
 
-    final List<String> selectedWeekdays = List.from(_establishment.workingDays);
+  List<String> selectedWeekdays = [];
+
+  void _showWeekdaysDialog() async {
+    final List<String> tempSelectedWeekdays = List.from(selectedWeekdays);
 
     await showDialog(
       context: context,
@@ -125,13 +135,13 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
                   children: weekdays.map((day) {
                     return CheckboxListTile(
                       title: Text(day),
-                      value: selectedWeekdays.contains(day),
+                      value: tempSelectedWeekdays.contains(day),
                       onChanged: (bool? value) {
                         setState(() {
                           if (value != null && value) {
-                            selectedWeekdays.add(day);
+                            tempSelectedWeekdays.add(day);
                           } else {
-                            selectedWeekdays.remove(day);
+                            tempSelectedWeekdays.remove(day);
                           }
                         });
                       },
@@ -151,9 +161,12 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  _establishment.workingDays = selectedWeekdays;
+                  selectedWeekdays = tempSelectedWeekdays;
+                  _workingDaysController.text = selectedWeekdays
+                      .map((day) => _getAbbreviatedWeekday(day))
+                      .join(', ');
                 });
-                print("${_establishment.workingDays}");
+
                 Navigator.pop(context);
               },
               child: const Text('Save'),
@@ -272,7 +285,6 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
                     return null;
                   },
                 ),
-                // Add input fields for categories, working days, and opening and closing times
                 DropdownButtonFormField<String>(
                   decoration: const InputDecoration(labelText: 'Categories'),
                   value: _selectedCategory,
@@ -296,12 +308,11 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
                 ),
                 GestureDetector(
                   onTap: _showWeekdaysDialog,
-                  child: AbsorbPointer(
-                    child: TextFormField(
-                      decoration:
-                          const InputDecoration(labelText: 'Working Days'),
-                      initialValue: _establishment.workingDays.join(', '),
-                    ),
+                  child: TextFormField(
+                    controller: _workingDaysController,
+                    decoration:
+                        const InputDecoration(labelText: 'Working Days'),
+                    enabled: false,
                   ),
                 ),
                 TextFormField(
@@ -350,5 +361,9 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
         ),
       ),
     );
+  }
+
+  String _getAbbreviatedWeekday(String weekday) {
+    return weekday.substring(0, 3);
   }
 }
