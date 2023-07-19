@@ -47,6 +47,7 @@ dependencies:
   geocoding: ^2.1.0
   flutter_compass: ^0.7.0
   flutter_time_picker_spinner: ^2.0.0
+  fluttertoast: ^8.2.2
 
 
 

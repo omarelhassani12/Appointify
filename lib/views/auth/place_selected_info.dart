@@ -70,50 +70,50 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
   }
 
   void _saveForm() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+    // if (_formKey.currentState!.validate()) {
+    //   _formKey.currentState!.save();
 
-      _establishment.workingDays =
-          selectedWeekdays.map(_getAbbreviatedWeekday).toList();
+    _establishment.workingDays =
+        selectedWeekdays.map(_getAbbreviatedWeekday).toList();
 
-      // Create a new instance of Establishment with updated values
-      final updatedEstablishment = Establishment(
-        id: _establishment.id,
-        name: _establishment.name,
-        address: _establishment.address,
-        email: _establishment.email,
-        phoneNumber: _establishment.phoneNumber,
-        country: _establishment.country, // Include country
-        position: _establishment.position, // Include position
-        categories: [_selectedCategory], // Update selected category
-        workingDays: selectedWeekdays
-            .map(_getAbbreviatedWeekday)
-            .toList(), // Update working days
-        openningTimeAm: _establishment.openningTimeAm, // Store the AM time
-        openningTimePm: _establishment.openningTimePm, // Store the PM time
-        closingTimeAm: _establishment.closingTimeAm, // Store the AM time
-        closingTimePm: _establishment.closingTimePm, // Store the PM time
-      );
+    // Create a new instance of Establishment with updated values
+    final updatedEstablishment = Establishment(
+      id: _establishment.id,
+      name: _establishment.name,
+      address: _establishment.address,
+      email: _establishment.email,
+      phoneNumber: _establishment.phoneNumber,
+      country: _establishment.country, // Include country
+      position: _establishment.position, // Include position
+      categories: [_selectedCategory], // Update selected category
+      workingDays: selectedWeekdays
+          .map(_getAbbreviatedWeekday)
+          .toList(), // Update working days
+      openningTimeAm: _establishment.openningTimeAm, // Store the AM time
+      openningTimePm: _establishment.openningTimePm, // Store the PM time
+      closingTimeAm: _establishment.closingTimeAm, // Store the AM time
+      closingTimePm: _establishment.closingTimePm, // Store the PM time
+    );
 
-      // You can now use the updatedEstablishment object to save the data or perform any other operations.
+    // You can now use the updatedEstablishment object to save the data or perform any other operations.
 
-      // For example, print the data:
-      print('Establishment Name: ${updatedEstablishment.name}');
-      print('Establishment Address: ${updatedEstablishment.address}');
-      print('Country: ${updatedEstablishment.country}');
-      print('Position: ${updatedEstablishment.position}');
-      print('Categories: ${updatedEstablishment.categories}');
-      print('Working Days: ${updatedEstablishment.workingDays}');
-      print('Opening Time AM: ${updatedEstablishment.openningTimeAm}');
-      print('Closing Time AM: ${updatedEstablishment.closingTimeAm}');
-      print('Opening Time PM: ${updatedEstablishment.openningTimePm}');
-      print('Closing Time PM: ${updatedEstablishment.closingTimePm}');
+    // For example, print the data:
+    print('Establishment Name: ${updatedEstablishment.name}');
+    print('Establishment Address: ${updatedEstablishment.address}');
+    print('Country: ${updatedEstablishment.country}');
+    print('Position: ${updatedEstablishment.position}');
+    print('Categories: ${updatedEstablishment.categories}');
+    print('Working Days: ${updatedEstablishment.workingDays}');
+    print('Opening Time AM: ${updatedEstablishment.openningTimeAm}');
+    print('Closing Time AM: ${updatedEstablishment.closingTimeAm}');
+    print('Opening Time PM: ${updatedEstablishment.openningTimePm}');
+    print('Closing Time PM: ${updatedEstablishment.closingTimePm}');
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const AdminHomeScreen()),
-      );
-    }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const AdminHomeScreen()),
+    );
+    // }
   }
 
   String _selectedCategory = 'Restaurant';
