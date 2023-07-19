@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
+import '../../models/latlangPosition.dart';
 import '../../utils/colors.dart';
 import 'place_selected_info.dart';
 
@@ -125,19 +126,25 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
         ),
         ElevatedButton(
           onPressed: () {
-            // Do something with the selected position, like make an appointment
-            // ignore: avoid_print
             print(
-              'Selected Position: ${selectedPosition!.latitude}, ${selectedPosition!.longitude}',
+              'Selected Position: ${selectedPosition!.latitude}, ${selectedPosition!.longitude}\n Country: $locationName',
             );
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                // Replace the following line with the widget you want to navigate to.
-                return const PlaceSelectedInfo();
-              }),
-            );
+            if (selectedPosition != null) {
+              final position = LatLngPosition(
+                latitude: selectedPosition!.latitude,
+                longitude: selectedPosition!.longitude,
+              );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PlaceSelectedInfo(
+                    country: locationName,
+                    position: position,
+                  ),
+                ),
+              );
+            }
           },
           child: const Text('Confirm'),
         ),
