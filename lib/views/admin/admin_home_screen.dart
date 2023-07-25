@@ -232,17 +232,17 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
       body: Column(
         children: [
           Expanded(
-            flex: 3, // 30% of the available height
+            flex: 2, // 30% of the available height
             child: Padding(
-              padding: const EdgeInsets.only(left: 1, right: 1, top: 20),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height *
                     0.2, // 30% of the screen height
                 child: GridView.count(
                   crossAxisCount: 3,
                   mainAxisSpacing: 0,
-                  crossAxisSpacing: 0,
-                  childAspectRatio: 0.8,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 1,
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -281,19 +281,36 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             ),
           ),
           Expanded(
-            flex: 7, // 70% of the available height
-            child: SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height *
-                    0.7, // 70% of the screen height
-                child: PageView(
-                  controller: pageController,
-                  onPageChanged: _onPageChanged,
-                  children: const [
-                    AdminAppointmentsScreen(),
-                    // AdminHistoryAppointmentScreen(),
-                  ],
-                ),
+            flex: 8, // 80% of the available height
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Today\'s Appointments',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.accentClr,
+                    ),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height *
+                            0.7, // 70% of the screen height
+                        child: PageView(
+                          controller: pageController,
+                          onPageChanged: _onPageChanged,
+                          children: const [
+                            AdminAppointmentsScreen(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -308,7 +325,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             // For example, show a dialog to create a new item
           },
           backgroundColor: AppColors.accentClr,
-          child: const Icon(Icons.add),
+          child: const Icon(Icons.edit),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -328,7 +345,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               IconButton(
                 onPressed: () => _onTabTapped(1),
                 icon: Icon(
-                  Icons.category,
+                  Icons.store,
                   color: _currentIndex == 1 ? AppColors.accentClr : Colors.grey,
                 ),
               ),
@@ -388,7 +405,3 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 }
-
-
-
-

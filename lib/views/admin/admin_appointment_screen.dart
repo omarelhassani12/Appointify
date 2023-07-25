@@ -51,9 +51,9 @@ class AdminAppointmentsScreen extends StatelessWidget {
     final now = DateTime.now();
     final formatter = DateFormat('HH:mm');
     return List.generate(
-      5,
+      20,
       (index) => Appointment(
-        name: 'Client $index',
+        name: 'Client ${index + 1}',
         time:
             formatter.format(DateTime(now.year, now.month, now.day, 9 + index)),
         day: 'Monday', // Replace with the actual day of the appointment
