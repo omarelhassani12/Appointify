@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:image_picker/image_picker.dart';
@@ -294,7 +296,16 @@ class AdminEditStoreScreenState extends State<AdminEditStoreScreen> {
                         },
                       ),
                       TextFormField(
-                        decoration: const InputDecoration(labelText: 'Country'),
+                        decoration: const InputDecoration(
+                          labelText: 'Country',
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.accentClr),
+                          ),
+                          labelStyle: TextStyle(
+                            color: AppColors.accentClr,
+                          ),
+                          focusColor: AppColors.accentClr,
+                        ),
                         onSaved: (value) => _establishment.country = value!,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -549,7 +560,7 @@ class AdminEditStoreScreenState extends State<AdminEditStoreScreen> {
                       const SizedBox(height: 10),
                       Center(
                         child: SizedBox(
-                          width: 100,
+                          width: 200,
                           child: ElevatedButton(
                             onPressed: _saveForm,
                             style: ElevatedButton.styleFrom(

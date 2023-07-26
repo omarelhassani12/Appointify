@@ -109,7 +109,7 @@ class AdminStoreScreen extends StatelessWidget {
                   Expanded(
                     child: _buildDaysOfWork(),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: _buildWorkTimes(),
                   ),
@@ -167,5 +167,3 @@ class AdminStoreScreen extends StatelessWidget {
     );
   }
 }
-
-
