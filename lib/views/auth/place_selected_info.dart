@@ -40,12 +40,13 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
       phoneNumber: 0,
       categories: [],
       workingDays: [],
-      openningTimeAm: DateTime(0, 1, 1, 17, 0),
-      openningTimePm: DateTime(0, 1, 1, 17, 0),
-      closingTimeAm: DateTime(0, 1, 1, 17, 0),
-      closingTimePm: DateTime(0, 1, 1, 17, 0),
+      openningTimeAm: DateTime(0, 1, 1, 9, 0), // Set AM time to 9:00 AM
+      openningTimePm: DateTime(0, 1, 1, 17, 0), // Set PM time to 5:00 PM
+      closingTimeAm:
+          DateTime(0, 1, 1, 12, 0), // Set AM closing time to 12:00 PM
+      closingTimePm:
+          DateTime(0, 1, 1, 22, 0), // Set PM closing time to 10:00 PM
       country: widget.country,
-
       position: widget.position,
     );
   }
@@ -286,7 +287,7 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
                                   const InputDecoration(labelText: 'Latitude'),
                               enabled: false,
                               onSaved: (value) => _establishment
-                                  .position.latitude = double.parse(value!),
+                                  .position!.latitude = double.parse(value!),
                               initialValue: widget.position.latitude.toString(),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -303,7 +304,7 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
                                   const InputDecoration(labelText: 'Longitude'),
                               enabled: false,
                               onSaved: (value) => _establishment
-                                  .position.longitude = double.parse(value!),
+                                  .position!.longitude = double.parse(value!),
                               initialValue:
                                   widget.position.longitude.toString(),
                               validator: (value) {
@@ -591,19 +592,39 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
 
   void _showTimePicker(bool isAM, bool isClosingTime) {
     final now = DateTime.now();
-    final currentTime =
-        isAM ? _establishment.openningTimeAm : _establishment.openningTimePm;
+    DateTime? initialTime;
+
+    if (isAM) {
+      initialTime = isClosingTime
+          ? _establishment.closingTimeAm
+          : _establishment.openningTimeAm;
+    } else {
+      initialTime = isClosingTime
+          ? _establishment.closingTimePm
+          : _establishment.openningTimePm;
+    }
+
+    String timeType;
+    if (isAM) {
+      timeType = 'AM';
+    } else {
+      timeType = 'PM';
+    }
+    String positionType;
+    if (!isClosingTime) {
+      positionType = 'opening';
+    } else {
+      positionType = 'closing';
+    }
 
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: isAM
-              ? const Text('Select Opening Time (AM)')
-              : const Text('Select Opening Time (PM)'),
+          title: Text('Select $positionType Time ($timeType)'),
           content: TimePickerSpinner(
-            time: currentTime,
-            is24HourMode: false,
+            time: initialTime ?? now,
+            is24HourMode: true,
             normalTextStyle: const TextStyle(fontSize: 24, color: Colors.black),
             highlightedTextStyle:
                 const TextStyle(fontSize: 24, color: AppColors.accentClr),
@@ -657,4 +678,6 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
       },
     );
   }
+
+
 }
