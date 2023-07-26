@@ -214,7 +214,7 @@ class AdminEditStoreScreenState extends State<AdminEditStoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Place Information'),
+        title: const Text('Change Place Information'),
         centerTitle: true,
         backgroundColor: AppColors.accentClr,
         elevation: 0,
