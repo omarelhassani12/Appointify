@@ -215,33 +215,33 @@ class RoleWidgetState extends State<RoleWidget> {
           ),
         ),
         const SizedBox(height: 16),
-        // if (fullNameController.text.isNotEmpty &&
-        //     emailAddressController.text.isNotEmpty &&
-        //     passwordController.text.isNotEmpty &&
-        //     phoneController.text.isNotEmpty)
-        SizedBox(
-          width: 250,
-          child: SecondButton(
-            text: 'Sign up as ${widget.role}',
-            onPressed: () {
-              // if (_formKey.currentState?.validate() ?? false) {
-              if (widget.role == "Admin") {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PositionSelectMap()),
-                );
-              } else if (widget.role == "Client") {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ClientHomeScreen()),
-                );
-              }
-              // }
-            },
+        if (fullNameController.text.isNotEmpty &&
+            emailAddressController.text.isNotEmpty &&
+            passwordController.text.isNotEmpty &&
+            phoneController.text.isNotEmpty)
+          SizedBox(
+            width: 250,
+            child: SecondButton(
+              text: 'Sign up as ${widget.role}',
+              onPressed: () {
+                if (_formKey.currentState?.validate() ?? false) {
+                  if (widget.role == "Admin") {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PositionSelectMap()),
+                    );
+                  } else if (widget.role == "Client") {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ClientHomeScreen()),
+                    );
+                  }
+                }
+              },
+            ),
           ),
-        ),
       ],
     );
   }
