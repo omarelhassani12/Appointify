@@ -18,6 +18,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   int _currentIndex = 0;
   bool _isSearching = false;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void dispose() {
     pageController.dispose();
@@ -41,74 +43,12 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     });
   }
 
-  PreferredSizeWidget _buildAppBar() {
-    return AppBar(
-      leading: _isSearching
-          ? IconButton(
-              onPressed: () {
-                setState(() {
-                  _isSearching = false;
-                });
-              },
-              icon: const Icon(Icons.cancel),
-              color: AppColors.accentClr,
-            )
-          : IconButton(
-              onPressed: () {
-                setState(() {
-                  _isSearching = true;
-                });
-              },
-              icon: const Icon(Icons.search),
-              color: AppColors.accentClr,
-            ),
-      title: _isSearching
-          ? TextField(
-              decoration: const InputDecoration(
-                hintText: 'Search...',
-                border: InputBorder.none,
-              ),
-              onSubmitted: (value) {
-                // Perform search based on the input value
-                // You can add your search logic here
-              },
-            )
-          : const Text(
-              'Appointify Admin', // Replace with appropriate title for Admin
-              style: TextStyle(color: AppColors.accentClr),
-            ),
-      centerTitle: true,
-      elevation: 0,
-      automaticallyImplyLeading: false,
-      backgroundColor: AppColors.whiteClr,
-      actions: _isSearching
-          ? [
-              IconButton(
-                onPressed: () {
-                  // Perform search here
-                },
-                icon: const Icon(Icons.search),
-                color: AppColors.accentClr,
-              ),
-            ]
-          : [
-              GestureDetector(
-                onTap: () {
-                  // You can add custom action when the Appointify logo is tapped
-                },
-                child: Image.asset(
-                  "./assets/images/appointify.png",
-                  width: 100,
-                ),
-              ),
-            ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: _buildAppBar(),
+      drawer: _buildDrawer(),
       body: PageView(
         controller: pageController,
         onPageChanged: _onPageChanged,
@@ -274,7 +214,143 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 
-  // ... (other methods)
+  Widget _buildDrawer() {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: AppColors.accentClr,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage(
+                      'assets/images/admin.png'), // Replace with admin avatar
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Admin User', // Replace with admin name
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              // Handle settings tap
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.notifications),
+            title: const Text('Notifications'),
+            onTap: () {
+              // Handle notifications tap
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.language),
+            title: const Text('Change Language'),
+            onTap: () {
+              // Handle language selection tap
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.dark_mode),
+            title: const Text('Dark Mode'),
+            onTap: () {
+              // Handle dark mode toggle tap
+            },
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            alignment: Alignment.bottomCenter,
+            child: const Text(
+              'App Version: 1.0.0',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return AppBar(
+      leading: _isSearching
+          ? IconButton(
+              onPressed: () {
+                setState(() {
+                  _isSearching = false;
+                });
+              },
+              icon: const Icon(Icons.cancel),
+              color: AppColors.accentClr,
+            )
+          : IconButton(
+              onPressed: () {
+                setState(() {
+                  _isSearching = true;
+                });
+              },
+              icon: const Icon(Icons.search),
+              color: AppColors.accentClr,
+            ),
+      title: _isSearching
+          ? TextField(
+              decoration: const InputDecoration(
+                hintText: 'Search...',
+                border: InputBorder.none,
+              ),
+              onSubmitted: (value) {
+                // Perform search based on the input value
+                // You can add your search logic here
+              },
+            )
+          : const Text(
+              'Appointify Admin', // Replace with appropriate title for Admin
+              style: TextStyle(color: AppColors.accentClr),
+            ),
+      centerTitle: true,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      backgroundColor: AppColors.whiteClr,
+      actions: _isSearching
+          ? [
+              IconButton(
+                onPressed: () {
+                  // Perform search here
+                },
+                icon: const Icon(Icons.search),
+                color: AppColors.accentClr,
+              ),
+            ]
+          : [
+              Builder(
+                builder: (context) => GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: Image.asset(
+                    "./assets/images/appointify.png",
+                    width: 100,
+                  ),
+                ),
+              ),
+            ],
+    );
+  }
 
   void _showToast(String message, Color bgColor) {
     Fluttertoast.showToast(
