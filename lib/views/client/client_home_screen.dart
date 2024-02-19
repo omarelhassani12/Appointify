@@ -163,64 +163,106 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
     return Scaffold(
       appBar: _buildAppBar(),
       endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: AppColors.accentClr,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
                 children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/images/client.png'),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'client',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
+                  const DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: AppColors.accentClr,
                     ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage:
+                              AssetImage('assets/images/client.png'),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'client',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.account_circle),
+                    title: const Text('Account Settings'),
+                    onTap: () {
+                      // Handle account settings tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.notifications),
+                    title: const Text('Notifications'),
+                    onTap: () {
+                      // Handle notifications tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.language),
+                    title: const Text('Change Language'),
+                    onTap: () {
+                      // Handle language selection tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.dark_mode),
+                    title: const Text('Dark Mode'),
+                    onTap: () {
+                      // Handle dark mode toggle tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.question_answer),
+                    title: const Text('FAQ'),
+                    onTap: () {
+                      // Handle settings tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.info),
+                    title: const Text('About Us'),
+                    onTap: () {
+                      // Handle "About Us" tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.feedback),
+                    title: const Text('Feedback'),
+                    onTap: () {
+                      // Handle feedback tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.contact_support),
+                    title: const Text('Contact Support'),
+                    onTap: () {
+                      // Handle contact support tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.local_offer),
+                    title: const Text('Terms of Service'),
+                    onTap: () {
+                      // Handle terms of service tap
+                    },
                   ),
                 ],
               ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                // Handle settings tap
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.notifications),
-              title: const Text('Notifications'),
-              onTap: () {
-                // Handle notifications tap
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.language),
-              title: const Text('Change Language'),
-              onTap: () {
-                // Handle language selection tap
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.dark_mode),
-              title: const Text('Dark Mode'),
-              onTap: () {
-                // Handle dark mode toggle tap
-              },
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               alignment: Alignment.bottomCenter,
               child: const Text(
-                'App Version: 1.0.0',
+                'V 1.0.0',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
