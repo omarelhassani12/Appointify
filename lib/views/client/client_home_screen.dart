@@ -86,7 +86,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
               },
             )
           : const Text(
-              'Apointify',
+              'Appointify',
               style: TextStyle(color: AppColors.accentClr),
             ),
       centerTitle: true,
@@ -181,9 +181,9 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                     radius: 50,
                     backgroundImage: AssetImage('assets/images/client.png'),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 10),
                   Text(
-                    'John Doe',
+                    'client',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -283,7 +283,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
             );
           },
           backgroundColor: AppColors.accentClr,
-          child: const Icon(Icons.add),
+          child: const Icon(Icons.add, color: Colors.white),
         ),
       ),
       bottomNavigationBar: BottomAppBar(

@@ -7,7 +7,7 @@ class ClientCategoriesAppointmentDetails extends StatelessWidget {
   final String categoryName;
   final String categoryDescription;
   final String imagePath;
-  final List<String> places;
+  final List<List<String>> places;
 
   const ClientCategoriesAppointmentDetails({
     super.key,
@@ -21,18 +21,26 @@ class ClientCategoriesAppointmentDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$categoryName\'s Details'),
+        title: Text(
+          '$categoryName\'s Details',
+          style: const TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
         backgroundColor: AppColors.accentClr,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.asset(
-            imagePath,
-            fit: BoxFit.cover,
-            height: 200,
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 30, bottom: 30, right: 110, left: 110),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.fill,
+              height: 100,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -55,12 +63,16 @@ class ClientCategoriesAppointmentDetails extends StatelessWidget {
               ),
               itemCount: places.length,
               itemBuilder: (context, index) {
-                final placeName = places[index];
+                final List<String> placeInfo = places[index];
+                final String placeName = placeInfo[0];
+                final String placeImages = placeInfo[1];
+                final String placeworkDays = placeInfo[2];
+                final String placeworkTimes = placeInfo[3];
                 return ItemsCard(
                   name: placeName,
-                  logoPath: "assets/images/appointify.png",
-                  workDays: 'Mon - fri',
-                  workTimes: '08:00 - 12:00',
+                  logoPath: placeImages,
+                  workDays: placeworkDays,
+                  workTimes: placeworkTimes,
                 );
               },
             ),

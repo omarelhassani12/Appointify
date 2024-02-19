@@ -21,84 +21,335 @@ class _CategoriesAppointmentScreenState
           crossAxisCount: 2, // Number of columns in the grid
           mainAxisSpacing: 6, // Spacing between rows
           crossAxisSpacing: 6, // Spacing between columns
-          padding: const EdgeInsets.all(10), // Padding around the grid
+          padding: const EdgeInsets.all(10),
           children: [
             _buildCategoryCard(
               'Clinic Dental',
               'assets/categories/dental-clinic.png',
               'Find dental services near you.',
-              ['Dental Clinic 1', 'Dental Clinic 2', 'Dental Clinic 3'],
+              [
+                [
+                  'Dental Clinic 1',
+                  'assets/categories/dental-clinic.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Dental Clinic 2',
+                  'assets/categories/dental-clinic.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Dental Clinic 3',
+                  'assets/categories/dental-clinic.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Hair Salon',
               'assets/categories/hair-salon.png',
               'Get a new hairstyle at local hair salons.',
-              ['Hair Salon 1', 'Hair Salon 2', 'Hair Salon 3'],
+              [
+                [
+                  'Hair Salon 1',
+                  'assets/categories/hair-salon.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Hair Salon 2',
+                  'assets/categories/hair-salon.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Hair Salon 3',
+                  'assets/categories/hair-salon.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Fitness Center',
               'assets/categories/fitness-center.png',
               'Stay fit and healthy at nearby fitness centers.',
-              ['Fitness 1', 'Fitness 2', 'Fitness 3'],
+              [
+                [
+                  'Fitness 1',
+                  'assets/categories/fitness-center.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Fitness 2',
+                  'assets/categories/fitness-center.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Fitness 3',
+                  'assets/categories/fitness-center.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Spa & Wellness',
               'assets/categories/spa-&-wellness.png',
               'Relax and rejuvenate at local spas and wellness centers.',
-              ['Spa 1', 'Spa 2', 'Wellness'],
+              [
+                [
+                  'Spa 1',
+                  'assets/categories/spa-&-wellness.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Spa 2',
+                  'assets/categories/spa-&-wellness.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Wellness',
+                  'assets/categories/spa-&-wellness.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Restaurant',
               'assets/categories/restaurant.png',
               'Enjoy delicious meals at various restaurants in your area.',
-              ['Restaurant 1', 'Restaurant 2', 'Restaurant 3'],
+              [
+                [
+                  'Restaurant 1',
+                  'assets/categories/restaurant.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Restaurant 2',
+                  'assets/categories/restaurant.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Restaurant 3',
+                  'assets/categories/restaurant.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Coffee Shop',
               'assets/categories/coffee-shop.png',
               'Find cozy coffee shops for your caffeine fix.',
-              ['Coffee Shop 1', 'Coffee Shop 2', 'Coffee Shop 3'],
+              [
+                [
+                  'Coffee Shop 1',
+                  'assets/categories/coffee-shop.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Coffee Shop 2',
+                  'assets/categories/coffee-shop.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Coffee Shop 3',
+                  'assets/categories/coffee-shop.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Bookstore',
               'assets/categories/book-store.png',
               'Discover your next favorite book at local bookstores.',
               [
-                'Bookstore 1',
-                'Bookstore 2',
-                'Bookstore 3',
-                'Bookstore 2',
-                'Bookstore 3',
-                'Bookstore 2',
-                'Bookstore 2',
-                'Bookstore 2',
-                'Bookstore 2',
-                'Bookstore 3',
-                'Bookstore 2',
-                'Bookstore 3',
-                'Bookstore 2',
-                'Bookstore 2',
-                'Bookstore 2',
-                'Bookstore 3'
+                [
+                  'Bookstore 1',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 3',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 3',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 3',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 3',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 2',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bookstore 3',
+                  'assets/categories/book-store.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
               ],
             ),
             _buildCategoryCard(
               'Art Gallery',
               'assets/categories/art-gallery.png',
               'Explore art and culture at nearby art galleries.',
-              ['Art Gallery 1', 'Art Gallery 2', 'Art Gallery 3'],
+              [
+                [
+                  'Art Gallery 1',
+                  'assets/categories/art-gallery.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Art Gallery 2',
+                  'assets/categories/art-gallery.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Art Gallery 3',
+                  'assets/categories/art-gallery.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Bakery',
               'assets/categories/bakery.png',
               'Indulge in freshly baked goods at local bakeries.',
-              ['Bakery 1', 'Bakery 2', 'Bakery 3'],
+              [
+                [
+                  'Bakery 1',
+                  'assets/categories/bakery.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bakery 2',
+                  'assets/categories/bakery.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Bakery 3',
+                  'assets/categories/bakery.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
             _buildCategoryCard(
               'Garden Center',
               'assets/categories/garden-center.png',
               'Find gardening supplies and plants at garden centers.',
-              ['Garden 1', 'Garden 2', 'Garden 3'],
+              [
+                [
+                  'Garden 1',
+                  'assets/categories/garden-center.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Garden 2',
+                  'assets/categories/garden-center.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+                [
+                  'Garden 3',
+                  'assets/categories/garden-center.png',
+                  'Mon - Fri',
+                  '08:00 - 12:00'
+                ],
+              ],
             ),
           ],
         ),
@@ -106,8 +357,8 @@ class _CategoriesAppointmentScreenState
     );
   }
 
-  Widget _buildCategoryCard(
-      String name, String imagePath, String description, List<String> places) {
+  Widget _buildCategoryCard(String name, String imagePath, String description,
+      List<List<String>> places) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
