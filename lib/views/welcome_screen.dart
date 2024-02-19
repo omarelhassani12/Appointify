@@ -6,23 +6,6 @@ import '../widgets/click_able_text.dart';
 import 'auth/login_screen.dart';
 import 'auth/role.dart';
 
-// class SemiCircleClipper extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     final path = Path();
-//     path.moveTo(0, size.height * 0.5);
-//     path.quadraticBezierTo(
-//         size.width * 0.5, size.height, size.width, size.height * 0.5);
-//     path.lineTo(size.width, 0);
-//     path.lineTo(0, 0);
-//     path.close();
-//     return path;
-//   }
-
-//   @override
-//   bool shouldReclip(SemiCircleClipper oldClipper) => false;
-// }
-
 class SemiCircleClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
