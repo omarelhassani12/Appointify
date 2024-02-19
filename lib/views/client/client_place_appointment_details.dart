@@ -30,10 +30,15 @@ class PlaceDetailsPageState extends State<PlaceDetailsPage> {
   String selectedTime = '';
   List<String> places = [
     'Dental Clinic',
-    'Spa Center',
-    'Gym',
     'Hair Salon',
-    'Massage Center',
+    'Fitness Center',
+    'Spa & Wellness',
+    'Restaurant',
+    'Coffee Shop',
+    'Bookstore',
+    'Art Gallery',
+    'Bakery',
+    'Garden Center',
   ];
   List<int> ticketCounts = [1, 2, 3];
   int selectedTicketCount = 1;
@@ -70,10 +75,11 @@ class PlaceDetailsPageState extends State<PlaceDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.name),
+        title: Text(widget.name, style: const TextStyle(color: Colors.white)),
         backgroundColor: AppColors.accentClr,
         elevation: 0,
         centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -219,7 +225,7 @@ class PlaceDetailsPageState extends State<PlaceDetailsPage> {
                           title: 'Client Information',
                           ticketCount: 3,
                         ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 26),
                       if (selectedTicketCount > 0 &&
                           selectedDate.isNotEmpty &&
                           selectedTime.isNotEmpty)
@@ -231,16 +237,6 @@ class PlaceDetailsPageState extends State<PlaceDetailsPage> {
                   ),
                 ),
               ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SecondButton(
-                text: "Make an Appointment",
-                onPressed: () {
-                  _selectDate();
-                  _selectTime();
-                },
-              ),
             ),
           ],
         ),

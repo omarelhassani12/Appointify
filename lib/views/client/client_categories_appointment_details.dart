@@ -35,7 +35,7 @@ class ClientCategoriesAppointmentDetails extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-                top: 30, bottom: 30, right: 110, left: 110),
+                top: 30, bottom: 30, right: 120, left: 120),
             child: Image.asset(
               imagePath,
               fit: BoxFit.fill,
