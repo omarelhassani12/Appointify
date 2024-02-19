@@ -42,9 +42,8 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
-    IconData filterIcon = Icons.filter_list; // Default filter icon
+    IconData filterIcon = Icons.filter_list;
 
-    // Update the filter icon based on the selected filter
     if (_selectedFilter == 'country') {
       filterIcon = Icons.location_on;
     } else if (_selectedFilter == 'city') {
@@ -80,10 +79,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                 hintText: 'Search...',
                 border: InputBorder.none,
               ),
-              onSubmitted: (value) {
-                // Perform search based on the input value
-                // You can add your search logic here
-              },
+              onSubmitted: (value) {},
             )
           : const Text(
               'Appointify',
@@ -130,7 +126,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
               Builder(
                 builder: (context) => GestureDetector(
                   onTap: () {
-                    Scaffold.of(context).openDrawer();
+                    Scaffold.of(context).openEndDrawer();
                   },
                   child: Image.asset(
                     "./assets/images/appointify.png",
