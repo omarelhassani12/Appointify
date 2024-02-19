@@ -16,10 +16,12 @@ class _SearchAppointmentScreenState extends State<SearchAppointmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search Appointments'),
+        title: const Text('Search Appointments',
+            style: TextStyle(color: Colors.white)),
         backgroundColor: AppColors.accentClr,
         centerTitle: true,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: GridView.count(
         crossAxisCount: 2, // Number of columns in the grid
