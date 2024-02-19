@@ -20,10 +20,15 @@ class _MakingAppointmentScreenState extends State<MakingAppointmentScreen> {
   String selectedTime = '';
   List<String> places = [
     'Dental Clinic',
-    'Spa Center',
-    'Gym',
     'Hair Salon',
-    'Massage Center',
+    'Fitness Center',
+    'Spa & Wellness',
+    'Restaurant',
+    'Coffee Shop',
+    'Bookstore',
+    'Art Gallery',
+    'Bakery',
+    'Garden Center',
   ];
   List<int> ticketCounts = [1, 2, 3];
   String? selectedPlace;
@@ -95,10 +100,14 @@ class _MakingAppointmentScreenState extends State<MakingAppointmentScreen> {
       onWillPop: _confirmExit,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Make an Appointment'),
+          title: const Text(
+            'Make an Appointment',
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
           backgroundColor: AppColors.accentClr,
           elevation: 0,
+          iconTheme: const IconThemeData(color: Colors.white),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -173,7 +182,7 @@ class _MakingAppointmentScreenState extends State<MakingAppointmentScreen> {
                             text: 'Select Ticket Count:',
                           ),
                           Container(
-                            height: 40,
+                            // height: 40,
                             width: 160,
                             decoration: BoxDecoration(
                               color: AppColors.accentClr,
