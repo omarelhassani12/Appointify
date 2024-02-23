@@ -8,6 +8,7 @@ import '../../widgets/bottm_text.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/remember_checkbox.dart';
 import '../../widgets/text_form_field.dart';
+import '../client/client_home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -114,9 +115,14 @@ class __FormContentState extends State<_FormContent> {
               child: SecondButton(
                 text: 'Sign in',
                 onPressed: () {
-                  if (_formKey.currentState?.validate() ?? false) {
-                    /// do something
-                  }
+                  // if (_formKey.currentState?.validate() ?? false) {
+                  //   /// do something
+                  // }
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ClientHomeScreen()));
                 },
               ),
             ),
