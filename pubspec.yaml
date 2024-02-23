@@ -49,6 +49,8 @@ dependencies:
   flutter_time_picker_spinner: ^2.0.0
   fluttertoast: ^8.2.2
   image_picker: ^1.0.1
+  animated_splash_screen: ^1.3.0
+
 
 
 
