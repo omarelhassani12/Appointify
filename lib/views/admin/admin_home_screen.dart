@@ -65,17 +65,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   background: Column(
                     children: [
                       Expanded(
-                        flex: 1, // 30% of the available height
+                        flex: 1,
                         child: Padding(
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 20),
                           child: SizedBox(
-                            height: MediaQuery.of(context).size.height *
-                                0.1, // 30% of the screen height
+                            height: MediaQuery.of(context).size.height * 0.1,
                             child: GridView.count(
                               crossAxisCount: 3,
                               mainAxisSpacing: 0,
-                              crossAxisSpacing: 10,
+                              crossAxisSpacing: 7,
                               childAspectRatio: 1,
                               children: [
                                 GestureDetector(
@@ -125,12 +124,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           color: AppColors.accentClr,
                         ),
                       ),
-                      const SizedBox(
-                          height:
-                              8), // Add some spacing between the text and the appointments list
+                      const SizedBox(height: 8),
                       FutureBuilder<List<Appointment>>(
                         future: _fetchAppointmentsForToday(),
-                        // Replace with your method to fetch appointments
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -154,14 +150,14 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                 final appointment = snapshot.data![index];
                                 return ListTile(
                                   leading: const CircleAvatar(
-                                    child: Icon(Icons.person),
+                                    child: Icon(
+                                      Icons.person,
+                                      color: AppColors.accentClr,
+                                    ),
                                   ),
                                   title: Text('Name: ${appointment.name}'),
                                   subtitle: Text('Time: ${appointment.time}'),
-                                  // Add more appointment details as needed
-                                  onTap: () {
-                                    // Add onTap functionality for each appointment if needed
-                                  },
+                                  onTap: () {},
                                 );
                               },
                             );
@@ -174,7 +170,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               ),
             ],
           ),
-          // Placeholder for the StorePage (Replace this with your actual StorePage widget)
           const AdminStoreScreen(),
         ],
       ),
@@ -190,7 +185,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             );
           },
           backgroundColor: AppColors.accentClr,
-          child: const Icon(Icons.edit),
+          child: const Icon(
+            Icons.edit,
+            color: Colors.white,
+          ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -235,12 +233,11 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage(
-                      'assets/images/admin.png'), // Replace with admin avatar
+                  backgroundImage: AssetImage('assets/images/admin.png'),
                 ),
                 SizedBox(height: 16),
                 Text(
-                  'Admin User', // Replace with admin name
+                  'Admin User',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -320,13 +317,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 hintText: 'Search...',
                 border: InputBorder.none,
               ),
-              onSubmitted: (value) {
-                // Perform search based on the input value
-                // You can add your search logic here
-              },
+              onSubmitted: (value) {},
             )
           : const Text(
-              'Appointify Admin', // Replace with appropriate title for Admin
+              'Appointify Admin',
               style: TextStyle(color: AppColors.accentClr),
             ),
       centerTitle: true,
@@ -336,9 +330,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
       actions: _isSearching
           ? [
               IconButton(
-                onPressed: () {
-                  // Perform search here
-                },
+                onPressed: () {},
                 icon: const Icon(Icons.search),
                 color: AppColors.accentClr,
               ),
@@ -375,7 +367,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     String count,
     Color color, {
     double width = 90,
-    double height = 10,
+    double height = 20,
   }) {
     return Card(
       color: color,
@@ -383,7 +375,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
         width: width,
         height: height,
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -417,8 +409,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
         name: 'Client ${index + 1}',
         time:
             formatter.format(DateTime(now.year, now.month, now.day, 9 + index)),
-        day: 'Monday', // Replace with the actual day of the appointment
-        phone: '123-456-7890', // Replace with the actual phone number
+        day: 'Monday',
+        phone: '123-456-7890',
       ),
     );
   }
