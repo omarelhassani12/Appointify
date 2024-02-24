@@ -51,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Welcome to Us',
+                    'Welcome to Appointify',
                     style: TextStyle(
                       color: AppColors.whiteClr,
                       fontSize: 24,
