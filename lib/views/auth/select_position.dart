@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
@@ -32,10 +30,12 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Appointment Hubs'),
+        title: const Text('Appointment Hubs',
+            style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: AppColors.accentClr,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Stack(
         children: [
@@ -87,7 +87,10 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
               child: FloatingActionButton(
                 onPressed: () => _showConfirmationAlert(context),
                 backgroundColor: AppColors.accentClr,
-                child: const Icon(Icons.check),
+                child: const Icon(
+                  Icons.check,
+                  color: Colors.white,
+                ),
               ),
             ),
         ],
@@ -183,8 +186,8 @@ class _PositionSelectMapState extends State<PositionSelectMap> {
         }
       }
 
-      // ignore: use_build_context_synchronously
       showDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (context) => _buildConfirmationDialog(context, locationName),
       );

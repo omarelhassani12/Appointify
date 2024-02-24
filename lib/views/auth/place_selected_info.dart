@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:appointify/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,19 +31,17 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
   void initState() {
     super.initState();
     _establishment = Establishment(
-      id: '', // You can generate a unique ID for the establishment using a package like uuid
+      id: '',
       name: '',
       address: '',
       email: '',
       phoneNumber: 0,
       categories: [],
       workingDays: [],
-      openningTimeAm: DateTime(0, 1, 1, 9, 0), // Set AM time to 9:00 AM
-      openningTimePm: DateTime(0, 1, 1, 17, 0), // Set PM time to 5:00 PM
-      closingTimeAm:
-          DateTime(0, 1, 1, 12, 0), // Set AM closing time to 12:00 PM
-      closingTimePm:
-          DateTime(0, 1, 1, 22, 0), // Set PM closing time to 10:00 PM
+      openningTimeAm: DateTime(0, 1, 1, 9, 0),
+      openningTimePm: DateTime(0, 1, 1, 17, 0),
+      closingTimeAm: DateTime(0, 1, 1, 12, 0),
+      closingTimePm: DateTime(0, 1, 1, 22, 0),
       country: widget.country,
       position: widget.position,
     );
@@ -77,38 +73,32 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
       _establishment.workingDays =
           selectedWeekdays.map(_getAbbreviatedWeekday).toList();
 
-      // Create a new instance of Establishment with updated values
-      final updatedEstablishment = Establishment(
-        id: _establishment.id,
-        name: _establishment.name,
-        address: _establishment.address,
-        email: _establishment.email,
-        phoneNumber: _establishment.phoneNumber,
-        country: _establishment.country, // Include country
-        position: _establishment.position, // Include position
-        categories: [_selectedCategory], // Update selected category
-        workingDays: selectedWeekdays
-            .map(_getAbbreviatedWeekday)
-            .toList(), // Update working days
-        openningTimeAm: _establishment.openningTimeAm, // Store the AM time
-        openningTimePm: _establishment.openningTimePm, // Store the PM time
-        closingTimeAm: _establishment.closingTimeAm, // Store the AM time
-        closingTimePm: _establishment.closingTimePm, // Store the PM time
-      );
+      // final updatedEstablishment = Establishment(
+      //   id: _establishment.id,
+      //   name: _establishment.name,
+      //   address: _establishment.address,
+      //   email: _establishment.email,
+      //   phoneNumber: _establishment.phoneNumber,
+      //   country: _establishment.country,
+      //   position: _establishment.position,
+      //   categories: [_selectedCategory],
+      //   workingDays: selectedWeekdays.map(_getAbbreviatedWeekday).toList(),
+      //   openningTimeAm: _establishment.openningTimeAm,
+      //   openningTimePm: _establishment.openningTimePm,
+      //   closingTimeAm: _establishment.closingTimeAm,
+      //   closingTimePm: _establishment.closingTimePm,
+      // );
 
-      // You can now use the updatedEstablishment object to save the data or perform any other operations.
-
-      // For example, print the data:
-      print('Establishment Name: ${updatedEstablishment.name}');
-      print('Establishment Address: ${updatedEstablishment.address}');
-      print('Country: ${updatedEstablishment.country}');
-      print('Position: ${updatedEstablishment.position}');
-      print('Categories: ${updatedEstablishment.categories}');
-      print('Working Days: ${updatedEstablishment.workingDays}');
-      print('Opening Time AM: ${updatedEstablishment.openningTimeAm}');
-      print('Closing Time AM: ${updatedEstablishment.closingTimeAm}');
-      print('Opening Time PM: ${updatedEstablishment.openningTimePm}');
-      print('Closing Time PM: ${updatedEstablishment.closingTimePm}');
+      // print('Establishment Name: ${updatedEstablishment.name}');
+      // print('Establishment Address: ${updatedEstablishment.address}');
+      // print('Country: ${updatedEstablishment.country}');
+      // print('Position: ${updatedEstablishment.position}');
+      // print('Categories: ${updatedEstablishment.categories}');
+      // print('Working Days: ${updatedEstablishment.workingDays}');
+      // print('Opening Time AM: ${updatedEstablishment.openningTimeAm}');
+      // print('Closing Time AM: ${updatedEstablishment.closingTimeAm}');
+      // print('Opening Time PM: ${updatedEstablishment.openningTimePm}');
+      // print('Closing Time PM: ${updatedEstablishment.closingTimePm}');
 
       Navigator.pushReplacement(
         context,
@@ -139,7 +129,6 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
     'Movie Theater',
     'Amusement Park',
     'Beach',
-    // Add more categories as needed
   ];
 
   final List<String> weekdays = [
@@ -179,6 +168,7 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
                           }
                         });
                       },
+                      activeColor: AppColors.accentClr, // Change the color here
                     );
                   }).toList(),
                 ),
@@ -190,7 +180,10 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Colors.grey),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -219,7 +212,11 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Place Information'),
+        title: const Text(
+          'Place Information',
+          style: TextStyle(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: AppColors.accentClr,
         elevation: 0,
@@ -383,9 +380,7 @@ class PlaceSelectedInfoState extends State<PlaceSelectedInfo> {
                         onChanged: (value) {
                           setState(() {
                             _selectedCategory = value!;
-                            _establishment.categories = [
-                              value
-                            ]; // Update the selected category
+                            _establishment.categories = [value];
                           });
                         },
                         validator: (value) {
