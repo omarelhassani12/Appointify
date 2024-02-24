@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/appointment.dart';
+import '../client/client_search_appointment_screen.dart';
 import 'admin_edit_store_screen.dart';
 import 'admin_store_screen.dart';
 
@@ -221,64 +222,105 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 
   Widget _buildDrawer() {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: AppColors.accentClr,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
               children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage('assets/images/admin.png'),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Admin User',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: AppColors.accentClr,
                   ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage('assets/images/admin.png'),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Admin',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.account_circle),
+                  title: const Text('Account Settings'),
+                  onTap: () {
+                    // Handle account settings tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.notifications),
+                  title: const Text('Notifications'),
+                  onTap: () {
+                    // Handle notifications tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.language),
+                  title: const Text('Change Language'),
+                  onTap: () {
+                    // Handle language selection tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.dark_mode),
+                  title: const Text('Dark Mode'),
+                  onTap: () {
+                    // Handle dark mode toggle tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.question_answer),
+                  title: const Text('FAQ'),
+                  onTap: () {
+                    // Handle settings tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.info),
+                  title: const Text('About Us'),
+                  onTap: () {
+                    // Handle "About Us" tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.feedback),
+                  title: const Text('Feedback'),
+                  onTap: () {
+                    // Handle feedback tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.contact_support),
+                  title: const Text('Contact Support'),
+                  onTap: () {
+                    // Handle contact support tap
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.local_offer),
+                  title: const Text('Terms of Service'),
+                  onTap: () {
+                    // Handle terms of service tap
+                  },
                 ),
               ],
             ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // Handle settings tap
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notifications'),
-            onTap: () {
-              // Handle notifications tap
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.language),
-            title: const Text('Change Language'),
-            onTap: () {
-              // Handle language selection tap
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.dark_mode),
-            title: const Text('Dark Mode'),
-            onTap: () {
-              // Handle dark mode toggle tap
-            },
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             alignment: Alignment.bottomCenter,
             child: const Text(
-              'App Version: 1.0.0',
+              'V 1.0.0',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey,
@@ -290,27 +332,83 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 
+  // PreferredSizeWidget _buildAppBar() {
+  //   return AppBar(
+  //     leading: _isSearching
+  //         ? IconButton(
+  //             onPressed: () {
+  //               setState(() {
+  //                 _isSearching = false;
+  //               });
+  //             },
+  //             icon: const Icon(Icons.cancel),
+  //             color: AppColors.accentClr,
+  //           )
+  //         : IconButton(
+  //             onPressed: () {
+  //               setState(() {
+  //                 _isSearching = true;
+  //               });
+  //             },
+  //             icon: const Icon(Icons.search),
+  //             color: AppColors.accentClr,
+  //           ),
+  //     title: _isSearching
+  //         ? TextField(
+  //             decoration: const InputDecoration(
+  //               hintText: 'Search...',
+  //               border: InputBorder.none,
+  //             ),
+  //             onSubmitted: (value) {},
+  //           )
+  //         : const Text(
+  //             'Appointify',
+  //             style: TextStyle(color: AppColors.accentClr),
+  //           ),
+  //     centerTitle: true,
+  //     elevation: 0,
+  //     automaticallyImplyLeading: false,
+  //     backgroundColor: AppColors.whiteClr,
+  //     actions: _isSearching
+  //         ? [
+  //             IconButton(
+  //               onPressed: () {
+  //                 Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                     builder: (context) => const SearchAppointmentScreen(),
+  //                   ),
+  //                 );
+  //               },
+  //               icon: const Icon(Icons.search),
+  //               color: AppColors.accentClr,
+  //             ),
+  //           ]
+  //         : [
+  //             InkWell(
+  //               onTap: () {
+  //                 _scaffoldKey.currentState!.openDrawer();
+  //               },
+  //               child: Image.asset(
+  //                 "./assets/images/appointify.png",
+  //                 width: 100,
+  //               ),
+  //             ),
+  //           ],
+  //   );
+  // }
+
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      leading: _isSearching
-          ? IconButton(
-              onPressed: () {
-                setState(() {
-                  _isSearching = false;
-                });
-              },
-              icon: const Icon(Icons.cancel),
-              color: AppColors.accentClr,
-            )
-          : IconButton(
-              onPressed: () {
-                setState(() {
-                  _isSearching = true;
-                });
-              },
-              icon: const Icon(Icons.search),
-              color: AppColors.accentClr,
-            ),
+      leading: InkWell(
+        onTap: () {
+          _scaffoldKey.currentState!.openDrawer();
+        },
+        child: Image.asset(
+          "./assets/images/appointify.png",
+          width: 100,
+        ),
+      ),
       title: _isSearching
           ? TextField(
               decoration: const InputDecoration(
@@ -320,32 +418,33 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               onSubmitted: (value) {},
             )
           : const Text(
-              'Appointify Admin',
+              'Appointify',
               style: TextStyle(color: AppColors.accentClr),
             ),
       centerTitle: true,
       elevation: 0,
-      automaticallyImplyLeading: false,
       backgroundColor: AppColors.whiteClr,
       actions: _isSearching
           ? [
               IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search),
+                onPressed: () {
+                  setState(() {
+                    _isSearching = false;
+                  });
+                },
+                icon: const Icon(Icons.cancel),
                 color: AppColors.accentClr,
-              ),
+              )
             ]
           : [
-              Builder(
-                builder: (context) => GestureDetector(
-                  onTap: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  child: Image.asset(
-                    "./assets/images/appointify.png",
-                    width: 100,
-                  ),
-                ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _isSearching = true;
+                  });
+                },
+                icon: const Icon(Icons.search),
+                color: AppColors.accentClr,
               ),
             ],
     );
