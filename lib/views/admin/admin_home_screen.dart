@@ -332,72 +332,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 
-  // PreferredSizeWidget _buildAppBar() {
-  //   return AppBar(
-  //     leading: _isSearching
-  //         ? IconButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 _isSearching = false;
-  //               });
-  //             },
-  //             icon: const Icon(Icons.cancel),
-  //             color: AppColors.accentClr,
-  //           )
-  //         : IconButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 _isSearching = true;
-  //               });
-  //             },
-  //             icon: const Icon(Icons.search),
-  //             color: AppColors.accentClr,
-  //           ),
-  //     title: _isSearching
-  //         ? TextField(
-  //             decoration: const InputDecoration(
-  //               hintText: 'Search...',
-  //               border: InputBorder.none,
-  //             ),
-  //             onSubmitted: (value) {},
-  //           )
-  //         : const Text(
-  //             'Appointify',
-  //             style: TextStyle(color: AppColors.accentClr),
-  //           ),
-  //     centerTitle: true,
-  //     elevation: 0,
-  //     automaticallyImplyLeading: false,
-  //     backgroundColor: AppColors.whiteClr,
-  //     actions: _isSearching
-  //         ? [
-  //             IconButton(
-  //               onPressed: () {
-  //                 Navigator.push(
-  //                   context,
-  //                   MaterialPageRoute(
-  //                     builder: (context) => const SearchAppointmentScreen(),
-  //                   ),
-  //                 );
-  //               },
-  //               icon: const Icon(Icons.search),
-  //               color: AppColors.accentClr,
-  //             ),
-  //           ]
-  //         : [
-  //             InkWell(
-  //               onTap: () {
-  //                 _scaffoldKey.currentState!.openDrawer();
-  //               },
-  //               child: Image.asset(
-  //                 "./assets/images/appointify.png",
-  //                 width: 100,
-  //               ),
-  //             ),
-  //           ],
-  //   );
-  // }
-
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       leading: InkWell(
@@ -442,6 +376,12 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   setState(() {
                     _isSearching = true;
                   });
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const SearchAppointmentScreen(),
+                  //   ),
+                  // );
                 },
                 icon: const Icon(Icons.search),
                 color: AppColors.accentClr,
